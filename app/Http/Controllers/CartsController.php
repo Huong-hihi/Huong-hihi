@@ -108,7 +108,7 @@ class CartsController extends Controller
     public function update(Request $request, $id)
     {
         $books = $request->books;
-
+        var_dump($request->books);
         $total = 0;
         foreach ($books as $value) {
             $book = $this->book->find($value['id']);

@@ -40,7 +40,7 @@
                                         </td>
                                         <td class="product-quantity">
                                             <input type="number" class="book-quantity" min="1" value="{{ $cart->quantity }}">
-                                            <input type="hidden" class="book-id" name="book-id" value="{{ $cart->id }}">
+                                            <input type="hidden" class="book-id" name="book-id" value="{{ $cart->book->id }}">
                                         </td>
                                         <td class="product-subtotal">${{ $cart->book->price * $cart->quantity }}</td>
                                         <td class="product-remove">
@@ -182,7 +182,7 @@
 
         function order() {
             var cartItemContainer = document.getElementsByClassName('each-cart')
-
+            
             if (cartItemContainer.length) {
                 for (var i = 0; i < cartItemContainer.length; i++) {
                     var input = document.createElement("input");
@@ -190,8 +190,9 @@
 
                     var quantityElement = cartItemContainer[i].getElementsByClassName('book-quantity')[0];
                     var idElement = cartItemContainer[i].getElementsByClassName('book-id')[0];
-                    var quantity = quantityElement.value
-                    var book_id = idElement.value
+                    console.log(cartItemContainer[i].getElementsByClassName('book-id')[0]);
+                    var quantity = quantityElement.value;
+                    var book_id = idElement.value;
 
                     // set input
                     input.setAttribute("type", "hidden");
@@ -208,6 +209,7 @@
                     input1.setAttribute("value", quantity);
                     document.getElementById("order-form").appendChild(input1);
                 }
+                
                 document.getElementById("order-form").submit();
             }
         }
